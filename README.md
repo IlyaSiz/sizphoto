@@ -1,3 +1,5 @@
+Link to the guide: [Путь к изучению React](https://github.com/the-road-to-learn-react/the-road-to-learn-react-russian)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
