@@ -63,6 +63,7 @@ class App extends Component {
     }
 }
 
+
 const Search = ({
     value,
     onChange,
@@ -74,6 +75,7 @@ const Search = ({
         value={value}
         onChange={onChange}/>
     </form>;
+
 
 const Table = ({
     list,
@@ -99,6 +101,7 @@ const Table = ({
             </div>
         )}
     </div>;
+
 
 const Button = ({
     onClick,
