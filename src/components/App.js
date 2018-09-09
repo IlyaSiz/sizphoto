@@ -12,7 +12,7 @@ import {
     PARAM_SEARCH,
     PARAM_PAGE,
     PARAM_HPP
-} from './constants';
+} from '../constants/constants';
 import './App.css';
 
 const updateSearchTopStoriesState = (hits, page) => (prevState) => {

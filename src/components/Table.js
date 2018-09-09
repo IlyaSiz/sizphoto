@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import Sort from './Sort';
 import Button from './Button';
-import {SORTS} from './constants';
+import {SORTS} from '../constants/constants';
 
 class Table extends Component {
     constructor(props) {
