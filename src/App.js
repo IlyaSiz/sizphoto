@@ -23,10 +23,12 @@ class App extends Component {
             searchKey: '',
             searchTerm: DEFAULT_QUERY,
             error: null,
+            isLoading: false,
         };
     }
 
     fetchSearchTopStories = (searchTerm, page = 0) => {
+        this.setState({ isLoading: true });
         axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
             .then(result => this._isMounted && this.setSearchTopStories(result.data))
             .catch(error => this._isMounted && this.setState({ error }));
@@ -46,7 +48,8 @@ class App extends Component {
             results: {
                 ...results,
                 [searchKey]: { hits: updatedHits, page }
-            }
+            },
+            isLoading: false
         });
     };
 
@@ -94,7 +97,8 @@ class App extends Component {
             searchTerm,
             results,
             searchKey,
-            error
+            error,
+            isLoading
         } = this.state;
         const page = (
             results &&
@@ -127,15 +131,16 @@ class App extends Component {
                     />
                 }
                 <div className="interactions">
-                    <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+                    <ButtonWithLoading
+                        isLoading={isLoading}
+                        onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
                         More stories
-                    </Button>
+                    </ButtonWithLoading>
                 </div>
             </div>
         );
     }
 }
-
 
 const Search = ({
     value,
@@ -198,7 +203,6 @@ Table.propTypes = {
     onDismiss: PropTypes.func.isRequired,
 };
 
-
 const Button = ({
     onClick,
     className,
@@ -221,6 +225,14 @@ Button.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
+const Loading = () => <div>Loading ...</div>;
+
+const withLoading = (Component) => ({ isLoading, ...rest }) =>
+    isLoading ?
+        <Loading /> :
+        <Component { ...rest } />;
+
+const ButtonWithLoading = withLoading(Button);
 
 export default App;
 
