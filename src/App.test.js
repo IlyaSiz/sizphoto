@@ -21,60 +21,72 @@ describe('App', () => {
     });
 });
 
-// describe('Search', () => {
-//     it('renders without crashing', () => {
-//         const div = document.createElement('div');
-//         ReactDOM.render(<Search>Поиск</Search>, div);
-//         ReactDOM.unmountComponentAtNode(div);
-//     });
-//     test('there is correct snapshot', () => {
-//         const component = renderer.create(
-//             <Search>Find</Search>
-//         );
-//         const tree = component.toJSON();
-//         expect(tree).toMatchSnapshot();
-//     });
-// });
-//
-// describe('Button', () => {
-//     it('renders without crashing', () => {
-//         const div = document.createElement('div');
-//         ReactDOM.render(<Button>More stories</Button>, div);
-//         ReactDOM.unmountComponentAtNode(div);
-//     });
-//     test('there is correct snapshot', () => {
-//         const component = renderer.create(
-//             <Button>More stories</Button>
-//         );
-//         const tree = component.toJSON();
-//         expect(tree).toMatchSnapshot();
-//     });
-// });
-//
-// describe('Table', () => {
-//     const props = {
-//         list: [
-//             { title: '1', author: '1', num_comments: 1, points: 2, objectID: 'y' },
-//             { title: '2', author: '2', num_comments: 1, points: 2, objectID: 'z' },
-//         ],
-//     };
-//     it('renders without crashing', () => {
-//         const div = document.createElement('div');
-//         ReactDOM.render(<Table { ...props } />, div);
-//     });
-//     test('there is correct snapshot', () => {
-//         const component = renderer.create(
-//             <Table { ...props } />
-//         );
-//         const tree = component.toJSON();
-//         expect(tree).toMatchSnapshot();
-//     });
-//     it('shows two items in list', () => {
-//         const element = shallow(<Table { ...props } />);
-//         expect(element.find('.table-row').length).toBe(2);
-//     });
-// });
-//
+describe('Search', () => {
+    const props = {
+        onChange: () => {},
+        onSubmit: () => {},
+    };
+
+    it('renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<Search {...props}>Find</Search>, div);
+        ReactDOM.unmountComponentAtNode(div);
+    });
+    test('there is correct snapshot', () => {
+        const component = renderer.create(
+            <Search {...props}>Find</Search>
+        );
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+});
+
+describe('Button', () => {
+    const props = {
+        onClick: () => {}
+    };
+
+    it('renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<Button {...props}>More stories</Button>, div);
+        ReactDOM.unmountComponentAtNode(div);
+    });
+    test('there is correct snapshot', () => {
+        const component = renderer.create(
+            <Button {...props}>More stories</Button>
+        );
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+});
+
+describe('Table', () => {
+    const props = {
+        list: [
+            { title: '1', author: '1', num_comments: 1, points: 2, objectID: 'y' },
+            { title: '2', author: '2', num_comments: 1, points: 2, objectID: 'z' },
+        ],
+        sortKey: 'TITLE',
+        isSortReverse: false,
+        onDismiss: () => {}
+    };
+    it('renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<Table { ...props } />, div);
+    });
+    test('there is correct snapshot', () => {
+        const component = renderer.create(
+            <Table { ...props } />
+        );
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+    it('shows two items in list', () => {
+        const element = shallow(<Table { ...props } />);
+        expect(element.find('.table-row').length).toBe(2);
+    });
+});
+
 // describe('Data fetching', () => {
 //
 //     const result = {
