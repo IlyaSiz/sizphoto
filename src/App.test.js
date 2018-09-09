@@ -4,7 +4,10 @@ import renderer from 'react-test-renderer';
 import sinon from 'sinon';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import App, { Search, Button, Table } from './App';
+import App from './App';
+import Search from './Search';
+import Button from './Button';
+import Table from './Table';
 
 Enzyme.configure({ adapter: new Adapter() });
 
